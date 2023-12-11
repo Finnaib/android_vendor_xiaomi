@@ -50,17 +50,6 @@ android_app_import {
 }
 
 android_app_import {
-	name: "PowerOffAlarm",
-	owner: "xiaomi",
-	apk: "proprietary/product/app/PowerOffAlarm/PowerOffAlarm.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
-	},
-	product_specific: true,
-}
-
-android_app_import {
 	name: "HotwordEnrollmentOKGoogleWCD9340",
 	owner: "xiaomi",
 	apk: "proprietary/product/priv-app/HotwordEnrollmentOKGoogleWCD9340/HotwordEnrollmentOKGoogleWCD9340.apk",
@@ -85,9 +74,9 @@ android_app_import {
 }
 
 android_app_import {
-	name: "QtiTelephonyService",
+	name: "PowerOffAlarm",
 	owner: "xiaomi",
-	apk: "proprietary/system_ext/app/QtiTelephonyService/QtiTelephonyService.apk",
+	apk: "proprietary/system_ext/app/PowerOffAlarm/PowerOffAlarm.apk",
 	certificate: "platform",
 	dex_preopt: {
 		enabled: false,
@@ -96,9 +85,9 @@ android_app_import {
 }
 
 android_app_import {
-	name: "uceShimService",
+	name: "QtiTelephonyService",
 	owner: "xiaomi",
-	apk: "proprietary/system_ext/app/uceShimService/uceShimService.apk",
+	apk: "proprietary/system_ext/app/QtiTelephonyService/QtiTelephonyService.apk",
 	certificate: "platform",
 	dex_preopt: {
 		enabled: false,
@@ -157,16 +146,34 @@ android_app_import {
 dex_import {
 	name: "WfdCommon",
 	owner: "xiaomi",
-	jars: ["proprietary/system/framework/WfdCommon.jar"],
+	jars: ["proprietary/framework/WfdCommon.jar"],
 }
 
-prebuilt_etc_xml {
-	name: "manifest_android.hardware.drm@1.3-service.widevine",
+dex_import {
+	name: "tcmclient",
 	owner: "xiaomi",
-	src: "proprietary/vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.widevine.xml",
-	filename_from_src: true,
-	sub_dir: "vintf/manifest",
-	soc_specific: true,
+	jars: ["proprietary/framework/tcmclient.jar"],
+}
+
+dex_import {
+	name: "audiosphere",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/audiosphere.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "com.android.hotwordenrollment.common.util",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/com.android.hotwordenrollment.common.util.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "com.qti.dpmframework",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/com.qti.dpmframework.jar"],
+	system_ext_specific: true,
 }
 
 dex_import {
@@ -191,16 +198,58 @@ dex_import {
 }
 
 dex_import {
-	name: "vendor.qti.ims.factory-V1.0-java",
+	name: "com.qualcomm.qti.uceservice-V2.0-java",
 	owner: "xiaomi",
-	jars: ["proprietary/system_ext/framework/vendor.qti.ims.factory-V1.0-java.jar"],
+	jars: ["proprietary/system_ext/framework/com.qualcomm.qti.uceservice-V2.0-java.jar"],
 	system_ext_specific: true,
 }
 
 dex_import {
-	name: "vendor.qti.ims.factory-V1.1-java",
+	name: "com.qualcomm.qti.uceservice-V2.1-java",
 	owner: "xiaomi",
-	jars: ["proprietary/system_ext/framework/vendor.qti.ims.factory-V1.1-java.jar"],
+	jars: ["proprietary/system_ext/framework/com.qualcomm.qti.uceservice-V2.1-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "dpmapi",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/dpmapi.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "qcrilhook",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/qcrilhook.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "qti-telephony-common",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/qti-telephony-common.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.callcapability-V1.0-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.callcapability-V1.0-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.callinfo-V1.0-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.callinfo-V1.0-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.connection-V1.0-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.connection-V1.0-java.jar"],
 	system_ext_specific: true,
 }
 
@@ -209,5 +258,86 @@ dex_import {
 	owner: "xiaomi",
 	jars: ["proprietary/system_ext/framework/vendor.qti.ims.factory-V2.0-java.jar"],
 	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.factory-V2.1-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.factory-V2.1-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.factory-V2.2-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.factory-V2.2-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.rcsconfig-V1.0-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.rcsconfig-V1.0-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.rcssip-V1.0-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.rcssip-V1.0-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.rcssip-V1.1-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.rcssip-V1.1-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.rcssip-V1.2-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.rcssip-V1.2-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.rcsuce-V1.0-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.rcsuce-V1.0-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.rcsuce-V1.1-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.rcsuce-V1.1-java.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.ims.rcsuce-V1.2-java",
+	owner: "xiaomi",
+	jars: ["proprietary/system_ext/framework/vendor.qti.ims.rcsuce-V1.2-java.jar"],
+	system_ext_specific: true,
+}
+
+prebuilt_etc_xml {
+	name: "android.hardware.neuralnetworks@1.3-service-qti",
+	owner: "xiaomi",
+	src: "proprietary/vendor/etc/vintf/manifest/android.hardware.neuralnetworks@1.3-service-qti.xml",
+	filename_from_src: true,
+	sub_dir: "vintf/manifest",
+	soc_specific: true,
+}
+
+prebuilt_etc_xml {
+	name: "manifest_android.hardware.drm@1.3-service.widevine",
+	owner: "xiaomi",
+	src: "proprietary/vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.widevine.xml",
+	filename_from_src: true,
+	sub_dir: "vintf/manifest",
+	soc_specific: true,
 }
 
